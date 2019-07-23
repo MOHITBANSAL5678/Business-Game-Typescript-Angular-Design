@@ -1,3 +1,6 @@
+import { Cell } from './cell.model';
+
 export class Board {
-    size: number;
+    cells: Array<Cell>;
+    
 }

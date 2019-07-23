@@ -1,3 +1,3 @@
-export enum grid {
+export enum Grid {
     Size = 16
 } 
