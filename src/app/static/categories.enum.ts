@@ -1,5 +1,5 @@
 export enum Categories {
-    Hotel = 'hotel',
-    Jail = 'jail',
-    Lottery = 'lottery'
+    H = 'hotel',
+    J = 'jail',
+    L = 'lottery'
 }
