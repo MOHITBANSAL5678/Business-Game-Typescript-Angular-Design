@@ -1,9 +1,12 @@
-import { Categories } from '../static/categories.enum';
 import { Player } from './player.model';
 
 export class Cell {
-sold : Player
-    constructor(public id: number,
-        public type: Categories.Hotel | Categories.Jail | Categories.Lottery
-) { }
+    static code = 1;
+    public id: number;
+    public type: string;
+    constructor() {
+        this.id = Cell.code;
+        Cell.code++;
+    }
 }
+
