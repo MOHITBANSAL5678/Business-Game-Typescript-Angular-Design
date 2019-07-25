@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Board } from './game-models/board.model';
-import { Grid } from './static/grid-enum';
-import { Cell } from './game-models/cell.model';
 import { Categories } from './static/categories.enum';
+import { Cell } from './game-models/cell.model';
+import { Factory } from './factory';
+import { Grid } from './static/grid-enum';
+import { Hotel } from './game-models/hotel.model';
+import { Jail } from './game-models/jail.model';
 import { Player } from './game-models/player.model';
+import { Util } from './util/util';
 
 @Component({
   selector: 'app-root',
@@ -12,30 +17,41 @@ import { Player } from './game-models/player.model';
 })
 export class AppComponent implements OnInit {
   title = 'business-game';
-  board: Board;
-  gridSize: number
+  board: Board = new Board();
+  gridSize: number;
+  inputs: Array<string> = ['h', 'h', 'h', 'h'];
+  Players: Array<Player>=[];
+  moves: number = 5;
 
   ngOnInit(): void {
     this.gridSize = Grid.Size;
+    this.inputs.forEach(input => {
+      this.board.cellContainer.push(Factory.creator(input));
+    });
 
-    let cell1 = new Cell(1, Categories.Hotel);
-    let cell2 = new Cell(2, Categories.Jail);
-    let cell3 = new Cell(3, Categories.Lottery);
-    let cell4 = new Cell(4, Categories.Hotel);
-    let cell5 = new Cell(5, Categories.Jail);
+    let p1 = new Player();
+    let p2 = new Player();
+    this.Players.push(p1);
+    this.Players.push(p2);
 
-    // move this in cell class
-    this.board.cells.push(cell1);
-    this.board.cells.push(cell2);
-    this.board.cells.push(cell3);
-    this.board.cells.push(cell4);
-    this.board.cells.push(cell5);
+    for (let index = 0; index < this.moves; index++) {
+      this.Players.forEach(player => {
+        let pos = player.setPosition(Util.randomNumber());
+
+        if (this.board.cellContainer[pos].type == Categories.H) {
+          let cell: any = this.board.cellContainer[pos];
+          if (cell.owner) {
+
+          }
+          else {
+            cell.owner = player;
+          }
+        }
+
+      });
+    }
 
 
-  let  p1 = new Player();
-  let  p2 = new Player();
-
-  
 
   }
 
