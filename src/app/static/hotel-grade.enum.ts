@@ -1,5 +1,5 @@
 export enum HotelGrade {
-    S = 'silver',
-    G = 'gold',
-    P = 'plattinum'
+    Silver = 'silver',
+    Gold = 'gold',
+    Platinum = 'platinum'
 }
